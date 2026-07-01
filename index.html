@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alora — Vector BI Analytics</title>
+<meta name="description" content="Sistema de gestión con inteligencia predictiva para estéticas, centros de salud y comercios del NEA. Predecí tus ingresos, detectá clientes en riesgo y tomá decisiones con datos reales.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --base:    #020D0A;
+    --tech:    #0F4030;
+    --accent:  #FF007F;
+    --muted:   #7BA898;
+    --faint:   #0a1f15;
+    --border:  #0f4030;
+    --white:   #ffffff;
+    --green:   #2DD68A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--base);
+    color: var(--white);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(2, 13, 10, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color .2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: var(--white) !important;
+    padding: .45rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 13px !important;
+    transition: opacity .2s !important;
+  }
+
+  .nav-cta:hover { opacity: .85 !important; }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: all .25s;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 6rem 2rem 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(ellipse at center, rgba(255,0,127,.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    background: rgba(255,0,127,.1);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: .3rem 1rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255,0,127,.22);
+    margin-bottom: 1.8rem;
+  }
+
+  .hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(30px, 5.5vw, 54px);
+    font-weight: 800;
+    line-height: 1.12;
+    color: var(--white);
+    max-width: 760px;
+    margin: 0 auto 1.4rem;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero p {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 540px;
+    margin: 0 auto 2.8rem;
+    line-height: 1.75;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    padding: .9rem 2.2rem;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform .15s, opacity .15s;
+  }
+
+  .btn-primary:hover { opacity: .88; transform: translateY(-1px); }
+  .btn-primary:active { transform: scale(.98); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--white);
+    border: 1px solid var(--border);
+    padding: .9rem 2rem;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color .2s, background .2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--muted); background: rgba(255,255,255,.04); }
+
+  /* ── SECTION BASE ── */
+  section { padding: 5rem 2rem; }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: .6rem;
+  }
+
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(24px, 3.8vw, 36px);
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: .9rem;
+    line-height: 1.2;
+  }
+
+  .section-body {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.75;
+    max-width: 580px;
+  }
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── PROBLEMA vs SOLUCIÓN ── */
+  .prob-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--tech);
+    border: 1px solid var(--tech);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+
+  .prob-cell {
+    background: var(--base);
+    padding: 1.6rem 1.8rem;
+  }
+
+  .prob-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: .7rem;
+    padding: .25rem .7rem;
+    border-radius: 4px;
+  }
+
+  .prob-tag.problem { background: rgba(255,85,85,.1); color: #ff6b6b; }
+  .prob-tag.solution { background: rgba(45,214,138,.1); color: var(--green); }
+
+  .prob-cell h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: .5rem;
+  }
+
+  .prob-cell p {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ── DASHBOARD MOCKUP ── */
+  .dashboard-wrap {
+    background: #040F0A;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+
+  .dash-titlebar {
+    background: #020D0A;
+    border-bottom: 1px solid var(--border);
+    padding: .7rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #ffbd2e; }
+  .dot-g { background: #28c840; }
+
+  .dash-title-text {
+    margin-left: 8px;
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: .04em;
+  }
+
+  .dash-body { padding: 1.4rem; }
+
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 1.2rem;
+  }
+
+  .kpi-card {
+    background: var(--base);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: .8rem 1rem;
+  }
+
+  .kpi-label {
+    font-size: 10px;
+    color: #4A7A68;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: 5px;
+  }
+
+  .kpi-val {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+  }
+
+  .kpi-val.pink { color: var(--accent); }
+  .kpi-val.green { color: var(--green); }
+  .kpi-val.white { color: var(--white); }
+  .kpi-val.muted { color: var(--muted); }
+
+  .kpi-trend {
+    font-size: 11px;
+    margin-top: 3px;
+  }
+
+  .kpi-trend.up { color: var(--green); }
+  .kpi-trend.down { color: #ff6b6b; }
+
+  .chart-section {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 10px;
+    margin-bottom: 1.2rem;
+  }
+
+  .chart-box {
+    background: var(--base);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .chart-header {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: .8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .chart-legend {
+    display: flex;
+    gap: 12px;
+    font-size: 10px;
+    color: #4A7A68;
+  }
+
+  .legend-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 2px;
+    margin-right: 3px;
+    vertical-align: middle;
+  }
+
+  #barChart {
+    height: 110px;
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+  }
+
+  .bar-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .bar-fill {
+    width: 100%;
+    border-radius: 3px 3px 0 0;
+    transition: opacity .2s;
+  }
+
+  .bar-fill:hover { opacity: .7; }
+
+  .bar-lbl {
+    font-size: 8px;
+    color: #3A6A58;
+  }
+
+  .retention-box {
+    background: var(--base);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ret-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .ret-name { color: var(--muted); flex: 1; }
+
+  .ret-bar-wrap {
+    flex: 2;
+    background: var(--tech);
+    border-radius: 20px;
+    height: 6px;
+    overflow: hidden;
+  }
+
+  .ret-bar-fill {
+    height: 100%;
+    border-radius: 20px;
+    background: var(--accent);
+  }
+
+  .ret-pct {
+    font-size: 11px;
+    color: var(--white);
+    font-weight: 600;
+    width: 34px;
+    text-align: right;
+  }
+
+  .oracle-alert {
+    background: linear-gradient(135deg, #0a1f15 0%, #020D0A 100%);
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    padding: 1.1rem 1.3rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .oracle-icon {
+    width: 34px; height: 34px;
+    background: rgba(255,0,127,.12);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--accent);
+    font-size: 16px;
+    font-weight: 800;
+  }
+
+  .oracle-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 3px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: .04em;
+  }
+
+  .oracle-text {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  /* ── FEATURES ── */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--tech);
+    border: 1px solid var(--tech);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+
+  .feat {
+    background: var(--base);
+    padding: 2rem 1.8rem;
+    transition: background .2s;
+  }
+
+  .feat:hover { background: var(--faint); }
+
+  .feat-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 1.1rem;
+  }
+
+  .feat h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: .5rem;
+  }
+
+  .feat p {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ── HOW ── */
+  .how-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 3rem;
+    position: relative;
+  }
+
+  .how-steps::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 24px;
+    bottom: 24px;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .step {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.4rem 0;
+    position: relative;
+  }
+
+  .step-num {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--accent);
+    flex-shrink: 0;
+    z-index: 1;
+  }
+
+  .step-content h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: .3rem;
+  }
+
+  .step-content p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ── PRECIO ── */
+  .price-card {
+    background: var(--faint);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+    max-width: 420px;
+    margin: 3rem auto 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .price-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+  }
+
+  .price-tag {
+    display: inline-block;
+    background: rgba(255,0,127,.1);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: .25rem .8rem;
+    border-radius: 4px;
+    margin-bottom: 1.2rem;
+  }
+
+  .price-amount {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 52px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: .3rem;
+  }
+
+  .price-amount sup {
+    font-size: 24px;
+    font-weight: 600;
+    vertical-align: super;
+  }
+
+  .price-period {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+
+  .price-features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+  }
+
+  .price-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .price-features li::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  /* ── CTA FINAL ── */
+  .cta-final {
+    background: var(--faint);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    padding: 5rem 2rem;
+  }
+
+  .cta-final .section-title { max-width: 560px; margin: 0 auto .9rem; }
+  .cta-final .section-body  { margin: 0 auto 2.5rem; }
+
+  .btn-wsp {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #25D366;
+    color: #fff;
+    border: none;
+    padding: 1.1rem 2.6rem;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform .15s, opacity .15s;
+    box-shadow: 0 4px 24px rgba(37,211,102,.2);
+  }
+
+  .btn-wsp:hover { opacity: .9; transform: translateY(-2px); }
+
+  .wsp-icon {
+    width: 26px; height: 26px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z'/%3E%3C/svg%3E") no-repeat center / contain;
+    flex-shrink: 0;
+  }
+
+  .cta-subtext {
+    margin-top: 1.2rem;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 1.8rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 12px;
+    color: #4A7A68;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-tagline {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: .06em;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 700px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    .prob-grid { grid-template-columns: 1fr; }
+    .features-grid { grid-template-columns: 1fr; }
+    .kpi-row { grid-template-columns: 1fr 1fr; }
+    .chart-section { grid-template-columns: 1fr; }
+
+    section { padding: 3.5rem 1.2rem; }
+    .hero { padding: 4rem 1.2rem 3rem; }
+    .cta-final { padding: 3.5rem 1.2rem; }
+
+    .how-steps::before { left: 19px; }
+  }
+
+  @media (max-width: 480px) {
+    .kpi-row { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .kpi-val { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">VECTOR <span>BI</span> ANALYTICS</a>
+  <ul class="nav-links">
+    <li><a href="#problema">El problema</a></li>
+    <li><a href="#features">Funciones</a></li>
+    <li><a href="#precio">Precio</a></li>
+    <li><a href="#contacto" class="nav-cta">Solicitar demo</a></li>
+  </ul>
+  <button class="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">Sistema de gestión · Inteligencia predictiva · NEA Argentina</div>
+  <h1>Tu negocio genera datos.<br><em>Nosotros los convertimos<br>en decisiones.</em></h1>
+  <p>Alora es el sistema de gestión para estéticas, centros de salud y comercios del NEA que te dice cuándo vas a perder un cliente antes de que se vaya.</p>
+  <div class="cta-row">
+    <a href="https://w.app/vectorbi" class="btn-primary" target="_blank">
+      <span class="wsp-icon" style="width:20px;height:20px;" aria-hidden="true"></span>
+      Solicitar demo gratis
+    </a>
+    <a href="#features" class="btn-ghost">Ver funciones</a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROBLEMA vs SOLUCIÓN -->
+<section id="problema">
+  <div class="container">
+    <div class="section-label">El problema</div>
+    <h2 class="section-title">¿Cansado de tomar<br>decisiones a ojo?</h2>
+    <p class="section-body">Las herramientas genéricas capturan operaciones, no inteligencia. Alora hace las dos cosas — y te avisa cuando algo está por salir mal.</p>
+
+    <div class="prob-grid">
+      <div class="prob-cell">
+        <div class="prob-tag problem">Sin sistema</div>
+        <h4>No sabés quién está por irse</h4>
+        <p>Una clienta fiel dejó de reservar. Lo notás cuando ya no vuelve — y ya es tarde.</p>
+      </div>
+      <div class="prob-cell">
+        <div class="prob-tag solution">Con Alora</div>
+        <h4>La alerta llega 30 días antes</h4>
+        <p>El sistema detecta la caída de frecuencia y te avisa para que actúes antes de perderla.</p>
+      </div>
+      <div class="prob-cell">
+        <div class="prob-tag problem">Sin sistema</div>
+        <h4>No sabés cuánto vas a facturar</h4>
+        <p>Cada mes empieza de cero. Sin proyección, sin planificación posible.</p>
+      </div>
+      <div class="prob-cell">
+        <div class="prob-tag solution">Con Alora</div>
+        <h4>Proyección del mes siguiente</h4>
+        <p>Basada en tu historial real. Sabés cuándo prepararte para los picos y los valles.</p>
+      </div>
+      <div class="prob-cell">
+        <div class="prob-tag problem">Sin sistema</div>
+        <h4>No sabés qué profesional retiene más</h4>
+        <p>Todos atienden, pero no sabés quién genera fidelidad y quién genera fuga.</p>
+      </div>
+      <div class="prob-cell">
+        <div class="prob-tag solution">Con Alora</div>
+        <h4>Retención por profesional</h4>
+        <p>Métricas individuales de retención para tomar decisiones de equipo con datos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- DASHBOARD MOCKUP -->
+<section id="dashboard">
+  <div class="container">
+    <div class="section-label">Dashboard</div>
+    <h2 class="section-title">Toda tu operación<br>en una pantalla</h2>
+    <p class="section-body">Instalable como app en tu celular. Funciona offline y se sincroniza en tiempo real. Modo oscuro con diseño pensado para que la información sea obvia, no decorativa.</p>
+
+    <div class="dashboard-wrap">
+      <div class="dash-titlebar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <span class="dash-title-text">Alora — Panel Principal &nbsp;·&nbsp; Junio 2026</span>
+      </div>
+      <div class="dash-body">
+
+        <div class="kpi-row">
+          <div class="kpi-card">
+            <div class="kpi-label">Facturación mes</div>
+            <div class="kpi-val white">$847K</div>
+            <div class="kpi-trend up">↑ 12% vs mayo</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Clientes en riesgo</div>
+            <div class="kpi-val pink">3</div>
+            <div class="kpi-trend down">↑ 1 vs semana ant.</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Retención general</div>
+            <div class="kpi-val green">91%</div>
+            <div class="kpi-trend up">↑ 3pp vs may</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Ticket promedio</div>
+            <div class="kpi-val white">$9.4K</div>
+            <div class="kpi-trend up">↑ 7% vs mayo</div>
+          </div>
+        </div>
+
+        <div class="chart-section">
+          <div class="chart-box">
+            <div class="chart-header">
+              <span>Facturación diaria — Junio 2026</span>
+              <div class="chart-legend">
+                <span><span class="legend-dot" style="background:#FF007F"></span>Real</span>
+                <span><span class="legend-dot" style="background:#0f4030;border:1px dashed #1a6045;"></span>Proyección</span>
+              </div>
+            </div>
+            <div id="barChart"></div>
+          </div>
+          <div class="retention-box">
+            <div class="chart-header">Retención por profesional</div>
+            <div class="ret-row">
+              <span class="ret-name">Valentina</span>
+              <div class="ret-bar-wrap"><div class="ret-bar-fill" style="width:95%"></div></div>
+              <span class="ret-pct">95%</span>
+            </div>
+            <div class="ret-row">
+              <span class="ret-name">Camila</span>
+              <div class="ret-bar-wrap"><div class="ret-bar-fill" style="width:88%"></div></div>
+              <span class="ret-pct">88%</span>
+            </div>
+            <div class="ret-row">
+              <span class="ret-name">Luciana</span>
+              <div class="ret-bar-wrap"><div class="ret-bar-fill" style="width:82%"></div></div>
+              <span class="ret-pct">82%</span>
+            </div>
+            <div class="ret-row">
+              <span class="ret-name">Romina</span>
+              <div class="ret-bar-wrap"><div class="ret-bar-fill" style="width:74%;background:#FF007F"></div></div>
+              <span class="ret-pct" style="color:#FF007F">74%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="oracle-alert">
+          <div class="oracle-icon">◆</div>
+          <div>
+            <div class="oracle-title">El Oráculo — Alerta predictiva activa</div>
+            <div class="oracle-text">María González no reserva hace 23 días (frecuencia habitual: cada 18 días). Probabilidad de abandono: <strong style="color:#FF007F">78%</strong>. Recomendación: contacto proactivo esta semana.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="section-label">Funcionalidades</div>
+    <h2 class="section-title">Todo lo que necesitás.<br>Nada que no uses.</h2>
+
+    <div class="features-grid">
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(255,0,127,.1);">📅</div>
+        <h4>Agenda y turnos</h4>
+        <p>Gestión completa de reservas, cancelaciones, señas y reprogramaciones. Con PIN individual por profesional.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(45,214,138,.1);">💰</div>
+        <h4>Caja y proyección</h4>
+        <p>Cierre diario, métodos de pago, ticket promedio y proyección automática del mes siguiente basada en tu historial.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(255,0,127,.1);">◆</div>
+        <h4>El Oráculo</h4>
+        <p>Churn predictivo, elasticidad de horarios, correlación entre método de pago y retención. Alertas antes de que el problema ocurra.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(15,64,48,.8);">👥</div>
+        <h4>Clientes y retención</h4>
+        <p>Historial completo, frecuencia de visita, retención por profesional y detección temprana de clientes en riesgo.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(15,64,48,.8);">📱</div>
+        <h4>App en tu celular</h4>
+        <p>Instalable como PWA en Android e iOS. Funciona sin internet y sincroniza cuando volvés a tener conexión.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(45,214,138,.1);">🔒</div>
+        <h4>Control de accesos</h4>
+        <p>Cada empleado entra con su PIN y ve solo lo que le corresponde. Vos ves todo, en tiempo real.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CÓMO FUNCIONA -->
+<section id="como">
+  <div class="container">
+    <div class="section-label">Empezar es simple</div>
+    <h2 class="section-title">En menos de una semana<br>ya estás operando con datos.</h2>
+
+    <div class="how-steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Demo de 10 minutos</h4>
+          <p>Te mostramos el sistema en vivo, con tus propios escenarios. Sin PowerPoints ni promesas vagas.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Instalación en tu celular</h4>
+          <p>Te acompañamos a instalar Alora como app. No necesitás servidores ni IT. Funciona desde el día uno.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Carga inicial de datos</h4>
+          <p>Importamos tus clientes y servicios existentes. No empezás de cero.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Inteligencia que crece con vos</h4>
+          <p>Con cada semana de operación, El Oráculo se vuelve más preciso. Tus datos históricos son tu ventaja.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PRECIO -->
+<section id="precio">
+  <div class="container">
+    <div class="section-label" style="text-align:center">Precio</div>
+    <h2 class="section-title" style="text-align:center">Claro, sin sorpresas.</h2>
+
+    <div class="price-card">
+      <div class="price-tag">Suscripción mensual</div>
+      <div class="price-amount"><sup>$</sup>35.000</div>
+      <div class="price-period">por mes · sin contrato anual</div>
+      <ul class="price-features">
+        <li>Sistema completo de gestión (Alora)</li>
+        <li>Agenda, caja, clientes y usuarios con PIN</li>
+        <li>App instalable en Android e iOS</li>
+        <li>Sincronización en tiempo real con la nube</li>
+        <li>Soporte presencial en el NEA</li>
+        <li>Actualizaciones incluidas</li>
+      </ul>
+      <a href="https://w.app/vectorbi" class="btn-primary" style="width:100%;justify-content:center;" target="_blank">
+        Empezar con demo gratis
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final" id="contacto">
+  <div class="section-label">Contacto</div>
+  <h2 class="section-title">10 minutos son suficientes<br>para ver si esto es para vos.</h2>
+  <p class="section-body">Una videollamada, el sistema en vivo, sin presión. Si no te convence, no perdiste nada.</p>
+  <a href="https://w.app/vectorbi" class="btn-wsp" target="_blank">
+    <span class="wsp-icon" aria-hidden="true"></span>
+    Escribinos por WhatsApp
+  </a>
+  <p class="cta-subtext">Respondemos el mismo día · <a href="mailto:vectoranalyticsbi@gmail.com" style="color:var(--muted);text-decoration:none;">vectoranalyticsbi@gmail.com</a> · NEA, Argentina</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Vector BI Analytics — Oberá, Misiones</span>
+  <span class="footer-tagline">Convertimos operaciones en inteligencia.</span>
+</footer>
+
+<script>
+  // Bar chart
+  (function(){
+    const area = document.getElementById('barChart');
+    if (!area) return;
+    const vals =  [42,55,38,61,70,48,52,80,67,73,45,58,90,76,63,88,55,72,95,68,74,82,79,86,91];
+    const proj =  [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,95,105,112];
+    const days =  ['1','','','','5','','','','','10','','','','','15','','','','','20','','','','','25'];
+    const max = 115;
+    vals.forEach(function(v, i){
+      const col = document.createElement('div');
+      col.className = 'bar-col';
+      if (proj[i] !== null) {
+        const pb = document.createElement('div');
+        pb.className = 'bar-fill';
+        pb.style.cssText = 'height:' + Math.round((proj[i]/max)*100) + 'px;background:#0f4030;border:1px dashed #1a6045;';
+        col.appendChild(pb);
+      } else {
+        const b = document.createElement('div');
+        b.className = 'bar-fill';
+        b.style.cssText = 'height:' + Math.round((v/max)*100) + 'px;background:#FF007F;';
+        col.appendChild(b);
+      }
+      if (days[i]) {
+        const lbl = document.createElement('span');
+        lbl.className = 'bar-lbl';
+        lbl.textContent = days[i];
+        col.appendChild(lbl);
+      }
+      area.appendChild(col);
+    });
+  })();
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
