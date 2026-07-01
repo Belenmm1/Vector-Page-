@@ -3,850 +3,1254 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vector BI Analytics</title>
-<meta name="description" content="Sistema de gestión con inteligencia predictiva para estéticas, centros de salud y comercios del NEA. Predecí tus ingresos, detectá clientes en riesgo y tomá decisiones con datos reales.">
+<title>Vector BI Analytics — Convertimos operaciones en inteligencia</title>
+<meta name="description" content="Sistema de gestión con inteligencia predictiva para estéticas, centros de salud y comercios del NEA argentino. Predecí tus ingresos, detectá clientes en riesgo y tomá decisiones con datos reales.">
+<meta name="keywords" content="sistema de gestión NEA, software estéticas Misiones, inteligencia de negocio, Vector BI Analytics, Oberá">
+<meta name="author" content="Vector BI Analytics">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#020D0A">
+<meta property="og:title" content="Vector BI Analytics — Convertimos operaciones en inteligencia">
+<meta property="og:description" content="Sistema de gestión con IA para pymes del NEA. Predecí ingresos, detectá clientes en riesgo, tomá decisiones con datos reales.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vector-page.vercel.app">
+<meta property="og:image" content="https://vector-page.vercel.app/og.png">
+<meta property="og:locale" content="es_AR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vector BI Analytics">
+<meta name="twitter:description" content="Sistema de gestión con inteligencia predictiva para pymes del NEA argentino.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+<link rel="canonical" href="https://vector-page.vercel.app">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Google Analytics — reemplazá G-XXXXXXXXXX por tu ID real de GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+<!-- Datos estructurados — ayuda a Google a mostrar Vector BI como negocio local -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Vector BI Analytics",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Android, iOS, Web",
+  "description": "Sistema de gestión con inteligencia predictiva para estéticas, centros de salud y comercios del NEA argentino.",
+  "offers": {
+    "@type": "Offer",
+    "price": "35000",
+    "priceCurrency": "ARS",
+    "priceValidUntil": "2026-12-31"
+  },
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Vector BI Analytics",
+    "email": "vectoranalyticsbi@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Oberá",
+      "addressRegion": "Misiones",
+      "addressCountry": "AR"
+    }
+  }
+}
+</script>
+
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --base:    #020D0A;
-    --tech:    #0F4030;
-    --accent:  #FF007F;
-    --muted:   #7BA898;
-    --faint:   #0a1f15;
-    --border:  #0f4030;
-    --white:   #ffffff;
-    --green:   #2DD68A;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--base);
-    color: var(--white);
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(2, 13, 10, 0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .nav-logo {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    font-size: 17px;
-    letter-spacing: 0.06em;
-    color: var(--white);
-    text-decoration: none;
-  }
-
-  .nav-logo span { color: var(--accent); }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 14px;
-    transition: color .2s;
-  }
-
-  .nav-links a:hover { color: var(--white); }
-
-  .nav-cta {
-    background: var(--accent);
-    color: var(--white) !important;
-    padding: .45rem 1.2rem;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 13px !important;
-    transition: opacity .2s !important;
-  }
-
-  .nav-cta:hover { opacity: .85 !important; }
-
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 4px;
-  }
-
-  .hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--white);
-    border-radius: 2px;
-    transition: all .25s;
-  }
-
-  /* ── HERO ── */
-  .hero {
-    padding: 6rem 2rem 5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -100px; left: 50%;
-    transform: translateX(-50%);
-    width: 800px; height: 800px;
-    background: radial-gradient(ellipse at center, rgba(255,0,127,.07) 0%, transparent 65%);
-    pointer-events: none;
-  }
-
-  .eyebrow {
-    display: inline-block;
-    background: rgba(255,0,127,.1);
-    color: var(--accent);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    padding: .3rem 1rem;
-    border-radius: 20px;
-    border: 1px solid rgba(255,0,127,.22);
-    margin-bottom: 1.8rem;
-  }
-
-  .hero h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(30px, 5.5vw, 54px);
-    font-weight: 800;
-    line-height: 1.12;
-    color: var(--white);
-    max-width: 760px;
-    margin: 0 auto 1.4rem;
-  }
-
-  .hero h1 em {
-    font-style: normal;
-    color: var(--accent);
-  }
-
-  .hero p {
-    font-size: 17px;
-    color: var(--muted);
-    max-width: 540px;
-    margin: 0 auto 2.8rem;
-    line-height: 1.75;
-  }
-
-  .cta-row {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    background: var(--accent);
-    color: var(--white);
-    border: none;
-    padding: .9rem 2.2rem;
-    border-radius: 8px;
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: none;
-    transition: transform .15s, opacity .15s;
-  }
-
-  .btn-primary:hover { opacity: .88; transform: translateY(-1px); }
-  .btn-primary:active { transform: scale(.98); }
-
-  .btn-ghost {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: transparent;
-    color: var(--white);
-    border: 1px solid var(--border);
-    padding: .9rem 2rem;
-    border-radius: 8px;
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: border-color .2s, background .2s;
-  }
-
-  .btn-ghost:hover { border-color: var(--muted); background: rgba(255,255,255,.04); }
-
-  /* ── SECTION BASE ── */
-  section { padding: 5rem 2rem; }
-
-  .container {
-    max-width: 960px;
-    margin: 0 auto;
-  }
-
-  .section-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .13em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: .6rem;
-  }
-
-  .section-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(24px, 3.8vw, 36px);
-    font-weight: 800;
-    color: var(--white);
-    margin-bottom: .9rem;
-    line-height: 1.2;
-  }
-
-  .section-body {
-    color: var(--muted);
-    font-size: 16px;
-    line-height: 1.75;
-    max-width: 580px;
-  }
-
-  hr.divider {
-    border: none;
-    border-top: 1px solid var(--border);
-  }
-
-  /* ── PROBLEMA vs SOLUCIÓN ── */
-  .prob-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--tech);
-    border: 1px solid var(--tech);
-    border-radius: 14px;
-    overflow: hidden;
-    margin-top: 3rem;
-  }
-
-  .prob-cell {
-    background: var(--base);
-    padding: 1.6rem 1.8rem;
-  }
-
-  .prob-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    margin-bottom: .7rem;
-    padding: .25rem .7rem;
-    border-radius: 4px;
-  }
-
-  .prob-tag.problem { background: rgba(255,85,85,.1); color: #ff6b6b; }
-  .prob-tag.solution { background: rgba(45,214,138,.1); color: var(--green); }
-
-  .prob-cell h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: .5rem;
-  }
-
-  .prob-cell p {
-    font-size: 13.5px;
-    color: var(--muted);
-    line-height: 1.65;
-  }
-
-  /* ── DASHBOARD MOCKUP ── */
-  .dashboard-wrap {
-    background: #040F0A;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    margin-top: 3rem;
-  }
-
-  .dash-titlebar {
-    background: #020D0A;
-    border-bottom: 1px solid var(--border);
-    padding: .7rem 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .dot { width: 10px; height: 10px; border-radius: 50%; }
-  .dot-r { background: #ff5f57; }
-  .dot-y { background: #ffbd2e; }
-  .dot-g { background: #28c840; }
-
-  .dash-title-text {
-    margin-left: 8px;
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 500;
-    letter-spacing: .04em;
-  }
-
-  .dash-body { padding: 1.4rem; }
-
-  .kpi-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-bottom: 1.2rem;
-  }
-
-  .kpi-card {
-    background: var(--base);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: .8rem 1rem;
-  }
-
-  .kpi-label {
-    font-size: 10px;
-    color: #4A7A68;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    margin-bottom: 5px;
-  }
-
-  .kpi-val {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 22px;
-    font-weight: 800;
-  }
-
-  .kpi-val.pink { color: var(--accent); }
-  .kpi-val.green { color: var(--green); }
-  .kpi-val.white { color: var(--white); }
-  .kpi-val.muted { color: var(--muted); }
-
-  .kpi-trend {
-    font-size: 11px;
-    margin-top: 3px;
-  }
-
-  .kpi-trend.up { color: var(--green); }
-  .kpi-trend.down { color: #ff6b6b; }
-
-  .chart-section {
-    display: grid;
-    grid-template-columns: 1fr 280px;
-    gap: 10px;
-    margin-bottom: 1.2rem;
-  }
-
-  .chart-box {
-    background: var(--base);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1rem;
-  }
-
-  .chart-header {
-    font-size: 11px;
-    color: var(--muted);
-    font-weight: 500;
-    margin-bottom: .8rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .chart-legend {
-    display: flex;
-    gap: 12px;
-    font-size: 10px;
-    color: #4A7A68;
-  }
-
-  .legend-dot {
-    display: inline-block;
-    width: 8px; height: 8px;
-    border-radius: 2px;
-    margin-right: 3px;
-    vertical-align: middle;
-  }
-
-  #barChart {
-    height: 110px;
-    display: flex;
-    align-items: flex-end;
-    gap: 3px;
-  }
-
-  .bar-col {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-  }
-
-  .bar-fill {
-    width: 100%;
-    border-radius: 3px 3px 0 0;
-    transition: opacity .2s;
-  }
-
-  .bar-fill:hover { opacity: .7; }
-
-  .bar-lbl {
-    font-size: 8px;
-    color: #3A6A58;
-  }
-
-  .retention-box {
-    background: var(--base);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .ret-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-  }
-
-  .ret-name { color: var(--muted); flex: 1; }
-
-  .ret-bar-wrap {
-    flex: 2;
-    background: var(--tech);
-    border-radius: 20px;
-    height: 6px;
-    overflow: hidden;
-  }
-
-  .ret-bar-fill {
-    height: 100%;
-    border-radius: 20px;
-    background: var(--accent);
-  }
-
-  .ret-pct {
-    font-size: 11px;
-    color: var(--white);
-    font-weight: 600;
-    width: 34px;
-    text-align: right;
-  }
-
-  .oracle-alert {
-    background: linear-gradient(135deg, #0a1f15 0%, #020D0A 100%);
-    border: 1px solid var(--accent);
-    border-radius: 10px;
-    padding: 1.1rem 1.3rem;
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-  }
-
-  .oracle-icon {
-    width: 34px; height: 34px;
-    background: rgba(255,0,127,.12);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    color: var(--accent);
-    font-size: 16px;
-    font-weight: 800;
-  }
-
-  .oracle-title {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 3px;
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: .04em;
-  }
-
-  .oracle-text {
-    font-size: 12.5px;
-    color: var(--muted);
-    line-height: 1.55;
-  }
-
-  /* ── FEATURES ── */
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--tech);
-    border: 1px solid var(--tech);
-    border-radius: 14px;
-    overflow: hidden;
-    margin-top: 3rem;
-  }
-
-  .feat {
-    background: var(--base);
-    padding: 2rem 1.8rem;
-    transition: background .2s;
-  }
-
-  .feat:hover { background: var(--faint); }
-
-  .feat-icon {
-    width: 44px; height: 44px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    margin-bottom: 1.1rem;
-  }
-
-  .feat h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: .5rem;
-  }
-
-  .feat p {
-    font-size: 13.5px;
-    color: var(--muted);
-    line-height: 1.65;
-  }
-
-  /* ── HOW ── */
-  .how-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    margin-top: 3rem;
-    position: relative;
-  }
-
-  .how-steps::before {
-    content: '';
-    position: absolute;
-    left: 20px;
-    top: 24px;
-    bottom: 24px;
-    width: 1px;
-    background: var(--border);
-  }
-
-  .step {
-    display: flex;
-    gap: 1.5rem;
-    padding: 1.4rem 0;
-    position: relative;
-  }
-
-  .step-num {
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    border: 1px solid var(--border);
-    background: var(--base);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    font-weight: 800;
-    color: var(--accent);
-    flex-shrink: 0;
-    z-index: 1;
-  }
-
-  .step-content h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: .3rem;
-  }
-
-  .step-content p {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.65;
-  }
-
-  /* ── PRECIO ── */
-  .price-card {
-    background: var(--faint);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2.5rem;
-    text-align: center;
-    max-width: 420px;
-    margin: 3rem auto 0;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .price-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--accent);
-  }
-
-  .price-tag {
-    display: inline-block;
-    background: rgba(255,0,127,.1);
-    color: var(--accent);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    padding: .25rem .8rem;
-    border-radius: 4px;
-    margin-bottom: 1.2rem;
-  }
-
-  .price-amount {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 52px;
-    font-weight: 800;
-    color: var(--white);
-    line-height: 1;
-    margin-bottom: .3rem;
-  }
-
-  .price-amount sup {
-    font-size: 24px;
-    font-weight: 600;
-    vertical-align: super;
-  }
-
-  .price-period {
-    font-size: 14px;
-    color: var(--muted);
-    margin-bottom: 2rem;
-  }
-
-  .price-features {
-    list-style: none;
-    text-align: left;
-    margin-bottom: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: .7rem;
-  }
-
-  .price-features li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    color: var(--muted);
-  }
-
-  .price-features li::before {
-    content: '✓';
-    color: var(--green);
-    font-weight: 700;
-    font-size: 14px;
-    flex-shrink: 0;
-  }
-
-  /* ── CTA FINAL ── */
-  .cta-final {
-    background: var(--faint);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    text-align: center;
-    padding: 5rem 2rem;
-  }
-
-  .cta-final .section-title { max-width: 560px; margin: 0 auto .9rem; }
-  .cta-final .section-body  { margin: 0 auto 2.5rem; }
-
-  .btn-wsp {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: #25D366;
-    color: #fff;
-    border: none;
-    padding: 1.1rem 2.6rem;
-    border-radius: 10px;
-    font-family: 'Inter', sans-serif;
-    font-size: 17px;
-    font-weight: 700;
-    cursor: pointer;
-    text-decoration: none;
-    transition: transform .15s, opacity .15s;
-    box-shadow: 0 4px 24px rgba(37,211,102,.2);
-  }
-
-  .btn-wsp:hover { opacity: .9; transform: translateY(-2px); }
-
-  .wsp-icon {
-    width: 26px; height: 26px;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z'/%3E%3C/svg%3E") no-repeat center / contain;
-    flex-shrink: 0;
-  }
-
-  .cta-subtext {
-    margin-top: 1.2rem;
-    font-size: 13px;
-    color: var(--muted);
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    padding: 1.8rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    font-size: 12px;
-    color: #4A7A68;
-    border-top: 1px solid var(--border);
-  }
-
-  .footer-tagline {
-    color: var(--accent);
-    font-weight: 600;
-    font-size: 11px;
-    letter-spacing: .06em;
-  }
-
-  /* ── MOBILE ── */
-  @media (max-width: 700px) {
-    .nav-links { display: none; }
-    .hamburger { display: flex; }
-
-    .prob-grid { grid-template-columns: 1fr; }
-    .features-grid { grid-template-columns: 1fr; }
-    .kpi-row { grid-template-columns: 1fr 1fr; }
-    .chart-section { grid-template-columns: 1fr; }
-
-    section { padding: 3.5rem 1.2rem; }
-    .hero { padding: 4rem 1.2rem 3rem; }
-    .cta-final { padding: 3.5rem 1.2rem; }
-
-    .how-steps::before { left: 19px; }
-  }
-
-  @media (max-width: 480px) {
-    .kpi-row { grid-template-columns: 1fr 1fr; gap: 8px; }
-    .kpi-val { font-size: 18px; }
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --base:   #020D0A;
+  --tech:   #0F4030;
+  --accent: #FF007F;
+  --muted:  #7BA898;
+  --faint:  #0a1f15;
+  --border: #0f4030;
+  --white:  #ffffff;
+  --green:  #2DD68A;
+  --mono:   'Fira Code', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--base);
+  color: var(--white);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── SCROLL ANIMATIONS ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+.reveal-delay-4 { transition-delay: .4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(2,13,10,.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: .06em;
+  color: var(--white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-logo-diamond { color: var(--accent); font-size: 14px; }
+.nav-logo span { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-family: var(--mono);
+  transition: color .2s;
+}
+
+.nav-links a:hover { color: var(--white); }
+
+.nav-cta {
+  background: var(--accent) !important;
+  color: var(--white) !important;
+  padding: .45rem 1.1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 64px;
+  left: 0; right: 0;
+  background: rgba(2,13,10,.98);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  z-index: 99;
+  padding: 1.2rem 2rem;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mobile-menu.open { display: flex; }
+
+.mobile-menu a {
+  color: var(--muted);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 14px;
+}
+
+.mobile-menu a.nav-cta {
+  color: var(--white) !important;
+  display: inline-block;
+  width: fit-content;
+}
+
+/* ── HERO ── */
+.hero {
+  padding: 7rem 2rem 5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -80px; left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 900px;
+  background: radial-gradient(ellipse at center, rgba(255,0,127,.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-code-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: .08em;
+  margin-bottom: 1.4rem;
+  opacity: .8;
+}
+
+.hero-code-label::before { content: '// '; color: var(--tech); }
+
+.eyebrow {
+  display: inline-block;
+  background: rgba(255,0,127,.08);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--mono);
+  letter-spacing: .1em;
+  padding: .3rem 1rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255,0,127,.2);
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(28px, 5.5vw, 52px);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--white);
+  max-width: 740px;
+  margin: 0 auto 1rem;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.typewriter-wrap {
+  font-family: var(--mono);
+  font-size: clamp(14px, 2vw, 17px);
+  color: var(--muted);
+  max-width: 580px;
+  margin: 0 auto 2.8rem;
+  min-height: 2.2em;
+  line-height: 1.7;
+  text-align: center;
+}
+
+#typewriter { border-right: 2px solid var(--accent); padding-right: 2px; }
+
+.cta-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  padding: .9rem 2.2rem;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .15s, opacity .15s;
+}
+
+.btn-primary:hover { opacity: .88; transform: translateY(-1px); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--white);
+  border: 1px solid var(--border);
+  padding: .9rem 2rem;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color .2s, background .2s;
+}
+
+.btn-ghost:hover { border-color: var(--muted); background: rgba(255,255,255,.04); }
+
+/* ── STATS ── */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-top: 4rem;
+}
+
+.stat-cell {
+  background: var(--faint);
+  padding: 1.8rem 1rem;
+  text-align: center;
+}
+
+.stat-num {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: .3rem;
+}
+
+.stat-num .accent { color: var(--accent); }
+
+.stat-desc {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: .06em;
+}
+
+/* ── SECTIONS ── */
+section { padding: 5rem 2rem; }
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: .1em;
+  margin-bottom: .6rem;
+}
+
+.section-label::before { content: '→ '; }
+
+.section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(22px, 3.8vw, 34px);
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: .9rem;
+  line-height: 1.2;
+}
+
+.section-body {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 580px;
+}
+
+hr.divider { border: none; border-top: 1px solid var(--border); }
+
+/* ── PROBLEMA ── */
+.prob-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--tech);
+  border: 1px solid var(--tech);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 3rem;
+}
+
+.prob-cell { background: var(--base); padding: 1.6rem 1.8rem; }
+
+.prob-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  margin-bottom: .7rem;
+  padding: .2rem .6rem;
+  border-radius: 3px;
+}
+
+.prob-tag.problem { background: rgba(255,85,85,.1); color: #ff6b6b; }
+.prob-tag.solution { background: rgba(45,214,138,.1); color: var(--green); }
+
+.prob-cell h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: .4rem;
+}
+
+.prob-cell p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+/* ── DASHBOARD ── */
+.dashboard-wrap {
+  background: #040F0A;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-top: 3rem;
+}
+
+.dash-titlebar {
+  background: #020D0A;
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-r { background: #ff5f57; }
+.dot-y { background: #ffbd2e; }
+.dot-g { background: #28c840; }
+
+.dash-title-text {
+  margin-left: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.dash-body { padding: 1.4rem; }
+
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 1.2rem;
+}
+
+.kpi-card {
+  background: var(--base);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: .8rem 1rem;
+}
+
+.kpi-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: #4A7A68;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 5px;
+}
+
+.kpi-val {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.kpi-val.pink { color: var(--accent); }
+.kpi-val.green { color: var(--green); }
+.kpi-val.white { color: var(--white); }
+
+.kpi-trend { font-size: 10px; margin-top: 3px; }
+.kpi-trend.up { color: var(--green); }
+.kpi-trend.down { color: #ff6b6b; }
+
+.chart-section {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 10px;
+  margin-bottom: 1.2rem;
+}
+
+.chart-box {
+  background: var(--base);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.chart-header {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: .8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chart-legend { display: flex; gap: 12px; font-size: 9px; color: #4A7A68; }
+
+.legend-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  margin-right: 3px;
+  vertical-align: middle;
+}
+
+#barChart {
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.bar-fill { width: 100%; border-radius: 3px 3px 0 0; transition: opacity .2s; }
+.bar-fill:hover { opacity: .7; }
+.bar-lbl { font-size: 8px; color: #3A6A58; }
+
+.retention-box {
+  background: var(--base);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ret-row { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.ret-name { color: var(--muted); flex: 1; font-family: var(--mono); font-size: 11px; }
+
+.ret-bar-wrap {
+  flex: 2;
+  background: var(--tech);
+  border-radius: 20px;
+  height: 5px;
+  overflow: hidden;
+}
+
+.ret-bar-fill { height: 100%; border-radius: 20px; background: var(--accent); }
+.ret-pct { font-size: 11px; color: var(--white); font-weight: 600; width: 34px; text-align: right; font-family: var(--mono); }
+
+.oracle-alert {
+  background: rgba(255,0,127,.04);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.oracle-icon {
+  width: 32px; height: 32px;
+  background: rgba(255,0,127,.1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.oracle-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  margin-bottom: 4px;
+  letter-spacing: .04em;
+}
+
+.oracle-text { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+/* ── FEATURES ── */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--tech);
+  border: 1px solid var(--tech);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 3rem;
+}
+
+.feat {
+  background: var(--base);
+  padding: 1.8rem 1.6rem;
+  transition: background .2s;
+  position: relative;
+}
+
+.feat:hover { background: var(--faint); }
+
+.feat-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--tech);
+  margin-bottom: .8rem;
+}
+
+.feat-icon {
+  display: block;
+  margin-bottom: .9rem;
+}
+
+.feat-icon svg {
+  width: 26px;
+  height: 26px;
+  stroke: var(--accent);
+  fill: none;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.feat h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: .4rem;
+}
+
+.feat p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+/* ── RUBROS ── */
+.rubros-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 3rem;
+}
+
+.rubro-card {
+  background: var(--faint);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.4rem 1.2rem;
+  text-align: center;
+  transition: border-color .2s, transform .2s;
+  cursor: default;
+}
+
+.rubro-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.rubro-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: .9rem;
+}
+
+.rubro-icon svg {
+  width: 30px;
+  height: 30px;
+  stroke: var(--tech);
+  fill: none;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke .2s;
+}
+
+.rubro-card:hover .rubro-icon svg { stroke: var(--accent); }
+
+.rubro-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: .4rem;
+}
+
+.rubro-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+
+.rubro-soon {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--tech);
+  border: 1px solid var(--border);
+  padding: .15rem .5rem;
+  border-radius: 3px;
+  margin-top: .6rem;
+  letter-spacing: .06em;
+}
+
+/* ── HOW ── */
+.how-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 3rem;
+  position: relative;
+}
+
+.how-steps::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 28px;
+  bottom: 28px;
+  width: 1px;
+  background: var(--border);
+}
+
+.step { display: flex; gap: 1.5rem; padding: 1.4rem 0; }
+
+.step-num {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.step-content h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: .3rem;
+}
+
+.step-content p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+.step-code {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--tech);
+  margin-top: .4rem;
+}
+
+/* ── PRECIO ── */
+.price-card {
+  background: var(--faint);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 2.5rem;
+  text-align: center;
+  max-width: 420px;
+  margin: 3rem auto 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.price-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+}
+
+.price-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: .1em;
+  margin-bottom: 1.2rem;
+  display: block;
+}
+
+.price-tag::before { content: '// '; color: var(--tech); }
+
+.price-amount {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 50px;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: .3rem;
+}
+
+.price-amount sup { font-size: 22px; vertical-align: super; }
+
+.price-period { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-bottom: 2rem; }
+
+.price-features {
+  list-style: none;
+  text-align: left;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+}
+
+.price-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--muted);
+  font-family: var(--mono);
+}
+
+.price-features li::before {
+  content: '✓';
+  color: var(--green);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ── TESTIMONIOS ── */
+.testimonios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 3rem;
+}
+
+.testi-card {
+  background: var(--faint);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.testi-card::before {
+  content: '"';
+  position: absolute;
+  top: .5rem; right: 1rem;
+  font-size: 64px;
+  color: var(--tech);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  line-height: 1;
+  opacity: .5;
+}
+
+.testi-soon {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: .08em;
+  margin-bottom: .8rem;
+}
+
+.testi-text {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+
+.testi-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.testi-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--tech);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.testi-meta { font-size: 12px; }
+.testi-name { color: var(--white); font-weight: 600; }
+.testi-role { color: var(--muted); font-family: var(--mono); font-size: 10px; margin-top: 1px; }
+
+/* ── CTA FINAL ── */
+.cta-final {
+  background: var(--faint);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+.cta-final .section-title { max-width: 560px; margin: 0 auto .9rem; }
+.cta-final .section-body { margin: 0 auto 2.5rem; }
+
+.btn-wsp {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #25D366;
+  color: #fff;
+  border: none;
+  padding: 1rem 2.4rem;
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .15s, opacity .15s;
+  box-shadow: 0 4px 24px rgba(37,211,102,.15);
+}
+
+.btn-wsp:hover { opacity: .9; transform: translateY(-2px); }
+
+.wsp-svg {
+  width: 22px; height: 22px;
+  fill: white;
+  flex-shrink: 0;
+}
+
+.cta-subtext { margin-top: 1rem; font-size: 13px; color: var(--muted); }
+.cta-subtext a:hover { color: var(--accent) !important; }
+
+/* ── FORMULARIO ── */
+.form-section {
+  background: var(--base);
+  border-top: 1px solid var(--border);
+  padding: 3rem 2rem;
+}
+
+.form-wrap {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.form-mono-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.form-mono-label::before { content: '// '; color: var(--tech); }
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+
+.form-group label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: .06em;
+}
+
+.form-group input,
+.form-group textarea {
+  background: var(--faint);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: .7rem 1rem;
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color .2s;
+  width: 100%;
+}
+
+.form-group input:focus,
+.form-group textarea:focus { border-color: var(--accent); }
+
+.form-group textarea { resize: vertical; min-height: 100px; }
+
+.form-msg-full { grid-column: 1 / -1; }
+
+.form-submit {
+  width: 100%;
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  padding: .85rem 2rem;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: opacity .2s;
+}
+
+.form-submit:hover { opacity: .88; }
+.form-submit:disabled { opacity: .6; cursor: not-allowed; }
+
+.form-success {
+  display: none;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--green);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.form-error {
+  display: none;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: #ff6b6b;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 2rem 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-brand .nav-logo { font-size: 15px; margin-bottom: .5rem; display: inline-flex; }
+.footer-tagline { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.footer-links a {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.footer-links a:hover { color: var(--accent); }
+
+.footer-copy {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #3A6A58;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── BOTÓN FLOTANTE WSP ── */
+.wsp-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 54px; height: 54px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(37,211,102,.35);
+  z-index: 200;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.wsp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(37,211,102,.45);
+}
+
+.wsp-float svg { width: 28px; height: 28px; fill: white; }
+
+/* ── MOBILE ── */
+@media (max-width: 720px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .prob-grid { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: 1fr; }
+  .rubros-grid { grid-template-columns: 1fr 1fr; }
+  .testimonios-grid { grid-template-columns: 1fr; }
+  .kpi-row { grid-template-columns: 1fr 1fr; }
+  .chart-section { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .stats-bar { grid-template-columns: 1fr; gap: 1px; }
+  section { padding: 3.5rem 1.2rem; }
+  .hero { padding: 5rem 1.2rem 3.5rem; }
+  .footer-inner { flex-direction: column; }
+  .wsp-float { bottom: 1.2rem; right: 1.2rem; width: 48px; height: 48px; }
+}
+
+@media (max-width: 480px) {
+  .rubros-grid { grid-template-columns: 1fr; }
+  .kpi-row { grid-template-columns: 1fr 1fr; gap: 8px; }
+}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">VECTOR <span>BI</span> ANALYTICS</a>
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-diamond">◆</span>
+    VECTOR <span>BI</span> ANALYTICS
+  </a>
   <ul class="nav-links">
-    <li><a href="#problema">El problema</a></li>
-    <li><a href="#features">Funciones</a></li>
-    <li><a href="#precio">Precio</a></li>
-    <li><a href="#contacto" class="nav-cta">Solicitar demo</a></li>
+    <li><a href="#problema">problema</a></li>
+    <li><a href="#features">funciones</a></li>
+    <li><a href="#rubros">rubros</a></li>
+    <li><a href="#precio">precio</a></li>
+    <li><a href="#contacto" class="nav-cta">Demo gratis</a></li>
   </ul>
-  <button class="hamburger" aria-label="Menú">
+  <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#problema">problema</a>
+  <a href="#features">funciones</a>
+  <a href="#rubros">rubros</a>
+  <a href="#precio">precio</a>
+  <a href="#contacto" class="nav-cta">Demo gratis</a>
+</div>
+
 <!-- HERO -->
 <section class="hero">
-  <div class="eyebrow">Sistema de gestión · Inteligencia predictiva · NEA Argentina</div>
-  <h1>Tu negocio genera datos.<br><em>Nosotros los convertimos<br>en decisiones.</em></h1>
-  <p>Vector BI Analytics es el sistema de gestión para estéticas, centros de salud y comercios del NEA que te dice cuándo vas a perder un cliente antes de que se vaya.</p>
-  <div class="cta-row">
-    <a href="https://wa.link/h2qr07" class="btn-primary" target="_blank">
-      <span class="wsp-icon" style="width:20px;height:20px;" aria-hidden="true"></span>
+  <div class="hero-code-label reveal">sistema de gestión + inteligencia predictiva · NEA Argentina</div>
+  <div class="eyebrow reveal reveal-delay-1">vector_bi_analytics.init()</div>
+  <h1 class="reveal reveal-delay-2">Tu negocio genera datos.<br><em>Nosotros los convertimos<br>en decisiones.</em></h1>
+  <div class="typewriter-wrap reveal reveal-delay-3">
+    <span id="typewriter" aria-live="polite"></span>
+  </div>
+  <div class="cta-row reveal reveal-delay-4">
+    <a href="https://wa.link/h2qr07" class="btn-primary" target="_blank" rel="noopener">
+      <svg class="wsp-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Solicitar demo gratis
     </a>
-    <a href="#features" class="btn-ghost">Ver funciones</a>
+    <a href="#features" class="btn-ghost">Ver funciones →</a>
   </div>
 </section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-cell reveal">
+    <div class="stat-num"><span class="accent">$</span><span class="count-num" data-target="35000">0</span></div>
+    <div class="stat-desc">// suscripción mensual</div>
+  </div>
+  <div class="stat-cell reveal reveal-delay-1">
+    <div class="stat-num"><span class="count-num" data-target="10">0</span> <span style="font-size:clamp(18px,2.5vw,26px);color:var(--muted)">min</span></div>
+    <div class="stat-desc">// para ver el sistema en vivo</div>
+  </div>
+  <div class="stat-cell reveal reveal-delay-2">
+    <div class="stat-num"><span class="count-num" data-target="0">0</span> <span style="font-size:clamp(16px,2vw,22px);color:var(--muted)">config</span></div>
+    <div class="stat-desc">// instalaciones complejas</div>
+  </div>
+</div>
 
 <hr class="divider">
 
 <!-- PROBLEMA vs SOLUCIÓN -->
 <section id="problema">
   <div class="container">
-    <div class="section-label">El problema</div>
-    <h2 class="section-title">¿Cansado de tomar<br>decisiones a ojo?</h2>
-    <p class="section-body">Las herramientas genéricas capturan operaciones, no inteligencia. Vector BI hace las dos cosas — y te avisa cuando algo está por salir mal.</p>
-
+    <div class="section-label reveal">el problema</div>
+    <h2 class="section-title reveal">¿Cansado de tomar<br>decisiones a ojo?</h2>
+    <p class="section-body reveal">Las herramientas genéricas capturan operaciones, no inteligencia. Vector BI hace las dos cosas — y te avisa cuando algo está por salir mal.</p>
     <div class="prob-grid">
-      <div class="prob-cell">
-        <div class="prob-tag problem">Sin sistema</div>
+      <div class="prob-cell reveal">
+        <div class="prob-tag problem">// sin sistema</div>
         <h4>No sabés quién está por irse</h4>
         <p>Una clienta fiel dejó de reservar. Lo notás cuando ya no vuelve — y ya es tarde.</p>
       </div>
-      <div class="prob-cell">
-        <div class="prob-tag solution">Con Vector BI</div>
+      <div class="prob-cell reveal reveal-delay-1">
+        <div class="prob-tag solution">// con Vector BI</div>
         <h4>La alerta llega 30 días antes</h4>
         <p>El sistema detecta la caída de frecuencia y te avisa para que actúes antes de perderla.</p>
       </div>
-      <div class="prob-cell">
-        <div class="prob-tag problem">Sin sistema</div>
+      <div class="prob-cell reveal">
+        <div class="prob-tag problem">// sin sistema</div>
         <h4>No sabés cuánto vas a facturar</h4>
         <p>Cada mes empieza de cero. Sin proyección, sin planificación posible.</p>
       </div>
-      <div class="prob-cell">
-        <div class="prob-tag solution">Con Vector BI</div>
+      <div class="prob-cell reveal reveal-delay-1">
+        <div class="prob-tag solution">// con Vector BI</div>
         <h4>Proyección del mes siguiente</h4>
         <p>Basada en tu historial real. Sabés cuándo prepararte para los picos y los valles.</p>
       </div>
-      <div class="prob-cell">
-        <div class="prob-tag problem">Sin sistema</div>
+      <div class="prob-cell reveal">
+        <div class="prob-tag problem">// sin sistema</div>
         <h4>No sabés qué profesional retiene más</h4>
         <p>Todos atienden, pero no sabés quién genera fidelidad y quién genera fuga.</p>
       </div>
-      <div class="prob-cell">
-        <div class="prob-tag solution">Con Vector BI</div>
+      <div class="prob-cell reveal reveal-delay-1">
+        <div class="prob-tag solution">// con Vector BI</div>
         <h4>Retención por profesional</h4>
-        <p>Métricas individuales de retención para tomar decisiones de equipo con datos.</p>
+        <p>Métricas individuales para tomar decisiones de equipo con datos concretos.</p>
       </div>
     </div>
   </div>
@@ -854,89 +1258,84 @@
 
 <hr class="divider">
 
-<!-- DASHBOARD MOCKUP -->
+<!-- DASHBOARD -->
 <section id="dashboard">
   <div class="container">
-    <div class="section-label">Dashboard</div>
-    <h2 class="section-title">Toda tu operación<br>en una pantalla</h2>
-    <p class="section-body">Instalable como app en tu celular. Funciona offline y se sincroniza en tiempo real. Modo oscuro con diseño pensado para que la información sea obvia, no decorativa.</p>
-
-    <div class="dashboard-wrap">
+    <div class="section-label reveal">dashboard</div>
+    <h2 class="section-title reveal">Toda tu operación<br>en una pantalla</h2>
+    <p class="section-body reveal">Instalable como app en tu celular. Funciona offline y sincroniza en tiempo real. Diseñado para que la información sea obvia, no decorativa.</p>
+    <div class="dashboard-wrap reveal">
       <div class="dash-titlebar">
         <div class="dot dot-r"></div>
         <div class="dot dot-y"></div>
         <div class="dot dot-g"></div>
-        <span class="dash-title-text">Vector BI — Panel Principal &nbsp;·&nbsp; Junio 2026</span>
+        <span class="dash-title-text">vector_bi — panel_principal.jsx · Junio 2026</span>
       </div>
       <div class="dash-body">
-
         <div class="kpi-row">
           <div class="kpi-card">
-            <div class="kpi-label">Facturación mes</div>
+            <div class="kpi-label">facturacion_mes</div>
             <div class="kpi-val white">$847K</div>
             <div class="kpi-trend up">↑ 12% vs mayo</div>
           </div>
           <div class="kpi-card">
-            <div class="kpi-label">Clientes en riesgo</div>
+            <div class="kpi-label">clientes_en_riesgo</div>
             <div class="kpi-val pink">3</div>
-            <div class="kpi-trend down">↑ 1 vs semana ant.</div>
+            <div class="kpi-trend down">↑ 1 vs sem. ant.</div>
           </div>
           <div class="kpi-card">
-            <div class="kpi-label">Retención general</div>
+            <div class="kpi-label">retencion_general</div>
             <div class="kpi-val green">91%</div>
-            <div class="kpi-trend up">↑ 3pp vs may</div>
+            <div class="kpi-trend up">↑ 3pp vs mayo</div>
           </div>
           <div class="kpi-card">
-            <div class="kpi-label">Ticket promedio</div>
+            <div class="kpi-label">ticket_promedio</div>
             <div class="kpi-val white">$9.4K</div>
             <div class="kpi-trend up">↑ 7% vs mayo</div>
           </div>
         </div>
-
         <div class="chart-section">
           <div class="chart-box">
             <div class="chart-header">
-              <span>Facturación diaria — Junio 2026</span>
+              <span>facturacion_diaria — junio_2026</span>
               <div class="chart-legend">
-                <span><span class="legend-dot" style="background:#FF007F"></span>Real</span>
-                <span><span class="legend-dot" style="background:#0f4030;border:1px dashed #1a6045;"></span>Proyección</span>
+                <span><span class="legend-dot" style="background:#FF007F"></span>real</span>
+                <span><span class="legend-dot" style="background:#0f4030;border:1px dashed #1a6045;"></span>proyeccion</span>
               </div>
             </div>
             <div id="barChart"></div>
           </div>
           <div class="retention-box">
-            <div class="chart-header">Retención por profesional</div>
+            <div class="chart-header">retencion_por_profesional</div>
             <div class="ret-row">
-              <span class="ret-name">Valentina</span>
+              <span class="ret-name">valentina</span>
               <div class="ret-bar-wrap"><div class="ret-bar-fill" style="width:95%"></div></div>
               <span class="ret-pct">95%</span>
             </div>
             <div class="ret-row">
-              <span class="ret-name">Camila</span>
+              <span class="ret-name">camila</span>
               <div class="ret-bar-wrap"><div class="ret-bar-fill" style="width:88%"></div></div>
               <span class="ret-pct">88%</span>
             </div>
             <div class="ret-row">
-              <span class="ret-name">Luciana</span>
+              <span class="ret-name">luciana</span>
               <div class="ret-bar-wrap"><div class="ret-bar-fill" style="width:82%"></div></div>
               <span class="ret-pct">82%</span>
             </div>
             <div class="ret-row">
-              <span class="ret-name">Romina</span>
+              <span class="ret-name">romina</span>
               <div class="ret-bar-wrap"><div class="ret-bar-fill" style="width:74%;background:#FF007F"></div></div>
               <span class="ret-pct" style="color:#FF007F">74%</span>
             </div>
           </div>
         </div>
-
         <div class="oracle-alert">
           <div class="oracle-icon">◆</div>
           <div>
-            <div class="oracle-title">El Oráculo — Alerta predictiva activa</div>
+            <div class="oracle-title">el_oraculo.alert() — prediccion activa</div>
             <div class="oracle-text">María González no reserva hace 23 días (frecuencia habitual: cada 18 días). Probabilidad de abandono: <strong style="color:#FF007F">78%</strong>. Recomendación: contacto proactivo esta semana.</div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -947,39 +1346,44 @@
 <!-- FEATURES -->
 <section id="features">
   <div class="container">
-    <div class="section-label">Funcionalidades</div>
-    <h2 class="section-title">Todo lo que necesitás.<br>Nada que no uses.</h2>
-
+    <div class="section-label reveal">funcionalidades</div>
+    <h2 class="section-title reveal">Todo lo que necesitás.<br>Nada que no uses.</h2>
     <div class="features-grid">
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(255,0,127,.1);">📅</div>
+      <div class="feat reveal">
+        <div class="feat-tag">// agenda</div>
+        <span class="feat-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M8 14h2M8 17h2M14 14h2M14 17h2"/></svg></span>
         <h4>Agenda y turnos</h4>
-        <p>Gestión completa de reservas, cancelaciones, señas y reprogramaciones. Con PIN individual por profesional.</p>
+        <p>Reservas, cancelaciones, señas y reprogramaciones. PIN individual por profesional.</p>
       </div>
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(45,214,138,.1);">💰</div>
+      <div class="feat reveal reveal-delay-1">
+        <div class="feat-tag">// caja</div>
+        <span class="feat-icon"><svg viewBox="0 0 24 24"><path d="M3 20V10M9 20V4M15 20v-7M21 20v-3"/></svg></span>
         <h4>Caja y proyección</h4>
-        <p>Cierre diario, métodos de pago, ticket promedio y proyección automática del mes siguiente basada en tu historial.</p>
+        <p>Cierre diario, métodos de pago, ticket promedio y proyección del mes siguiente.</p>
       </div>
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(255,0,127,.1);">◆</div>
+      <div class="feat reveal reveal-delay-2">
+        <div class="feat-tag">// ia predictiva</div>
+        <span class="feat-icon" style="font-family:'Montserrat',sans-serif;font-size:24px;font-weight:800;color:var(--accent);line-height:1;">◆</span>
         <h4>El Oráculo</h4>
-        <p>Churn predictivo, elasticidad de horarios, correlación entre método de pago y retención. Alertas antes de que el problema ocurra.</p>
+        <p>Churn predictivo, elasticidad de horarios y alertas antes de que el problema ocurra.</p>
       </div>
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(15,64,48,.8);">👥</div>
+      <div class="feat reveal">
+        <div class="feat-tag">// clientes</div>
+        <span class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c0-3.5 2.5-6 5.5-6s5.5 2.5 5.5 6"/><path d="M15.5 6.5a3.2 3.2 0 010 6.3M20.5 20c0-3-1.9-5.3-4.3-5.9"/></svg></span>
         <h4>Clientes y retención</h4>
-        <p>Historial completo, frecuencia de visita, retención por profesional y detección temprana de clientes en riesgo.</p>
+        <p>Historial completo, frecuencia de visita y detección temprana de clientes en riesgo.</p>
       </div>
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(15,64,48,.8);">📱</div>
+      <div class="feat reveal reveal-delay-1">
+        <div class="feat-tag">// mobile</div>
+        <span class="feat-icon"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.4"/><path d="M10.5 18.5h3"/></svg></span>
         <h4>App en tu celular</h4>
-        <p>Instalable como PWA en Android e iOS. Funciona sin internet y sincroniza cuando volvés a tener conexión.</p>
+        <p>Instalable como PWA en Android e iOS. Funciona sin internet y sincroniza sola.</p>
       </div>
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(45,214,138,.1);">🔒</div>
+      <div class="feat reveal reveal-delay-2">
+        <div class="feat-tag">// accesos</div>
+        <span class="feat-icon"><svg viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 018 0v3.5"/><circle cx="12" cy="15" r="1.3"/></svg></span>
         <h4>Control de accesos</h4>
-        <p>Cada empleado entra con su PIN y ve solo lo que le corresponde. Vos ves todo, en tiempo real.</p>
+        <p>Cada empleado ve solo lo que le corresponde. Vos ves todo, en tiempo real.</p>
       </div>
     </div>
   </div>
@@ -987,39 +1391,78 @@
 
 <hr class="divider">
 
-<!-- CÓMO FUNCIONA -->
+<!-- RUBROS -->
+<section id="rubros">
+  <div class="container">
+    <div class="section-label reveal">¿para quién es?</div>
+    <h2 class="section-title reveal">Construido para los negocios<br>de servicios del NEA</h2>
+    <p class="section-body reveal">Un sistema adaptado a cada rubro. Misma inteligencia, interfaz pensada para cada operación.</p>
+    <div class="rubros-grid">
+      <div class="rubro-card reveal">
+        <span class="rubro-icon"><svg viewBox="0 0 24 24"><path d="M12 3c3 4 6 7.5 6 11a6 6 0 01-12 0c0-3.5 3-7 6-11z"/></svg></span>
+        <div class="rubro-name">Estéticas y salud</div>
+        <div class="rubro-desc">Agenda de turnos, retención por profesional, efectividad de señas.</div>
+      </div>
+      <div class="rubro-card reveal reveal-delay-1">
+        <span class="rubro-icon"><svg viewBox="0 0 24 24"><path d="M4 9v6M2.5 10.5v3"/><path d="M20 9v6M21.5 10.5v3"/><path d="M7 12h10"/><rect x="4.5" y="7.5" width="3" height="9" rx="1"/><rect x="16.5" y="7.5" width="3" height="9" rx="1"/></svg></span>
+        <div class="rubro-name">Gimnasios y bienestar</div>
+        <div class="rubro-desc">Membresías, asistencia, renovaciones y alertas de baja.</div>
+        <span class="rubro-soon">// próximamente</span>
+      </div>
+      <div class="rubro-card reveal reveal-delay-2">
+        <span class="rubro-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="4.5" ry="3.8"/><circle cx="6.5" cy="9" r="1.8"/><circle cx="10.5" cy="6" r="1.8"/><circle cx="13.5" cy="6" r="1.8"/><circle cx="17.5" cy="9" r="1.8"/></svg></span>
+        <div class="rubro-name">Veterinarias</div>
+        <div class="rubro-desc">Historial clínico, vacunas, turnos y ciclos de demanda estacional.</div>
+        <span class="rubro-soon">// próximamente</span>
+      </div>
+      <div class="rubro-card reveal reveal-delay-3">
+        <span class="rubro-icon"><svg viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg></span>
+        <div class="rubro-name">Comercios minoristas</div>
+        <div class="rubro-desc">Stock, caja, clientes frecuentes y métricas de ticket promedio.</div>
+        <span class="rubro-soon">// próximamente</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- HOW -->
 <section id="como">
   <div class="container">
-    <div class="section-label">Empezar es simple</div>
-    <h2 class="section-title">En menos de una semana<br>ya estás operando con datos.</h2>
-
+    <div class="section-label reveal">cómo empezar</div>
+    <h2 class="section-title reveal">En menos de una semana<br>ya operás con datos.</h2>
     <div class="how-steps">
-      <div class="step">
-        <div class="step-num">1</div>
+      <div class="step reveal">
+        <div class="step-num">01</div>
         <div class="step-content">
           <h4>Demo de 10 minutos</h4>
-          <p>Te mostramos Vector BI en vivo, con tus propios escenarios. Sin PowerPoints ni promesas vagas.</p>
+          <p>El sistema en vivo, con tus propios escenarios. Sin PowerPoints.</p>
+          <div class="step-code">→ contacto por WhatsApp o email</div>
         </div>
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
         <div class="step-content">
           <h4>Instalación en tu celular</h4>
-          <p>Te acompañamos a instalar Vector BI como app. No necesitás servidores ni IT. Funciona desde el día uno.</p>
+          <p>Te acompañamos a instalar Vector BI como app. No necesitás servidores ni IT.</p>
+          <div class="step-code">→ PWA · Android · iOS</div>
         </div>
       </div>
-      <div class="step">
-        <div class="step-num">3</div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
         <div class="step-content">
           <h4>Carga inicial de datos</h4>
           <p>Importamos tus clientes y servicios existentes. No empezás de cero.</p>
+          <div class="step-code">→ soporte presencial incluido</div>
         </div>
       </div>
-      <div class="step">
-        <div class="step-num">4</div>
+      <div class="step reveal">
+        <div class="step-num">04</div>
         <div class="step-content">
           <h4>Inteligencia que crece con vos</h4>
-          <p>Con cada semana de operación, El Oráculo se vuelve más preciso. Tus datos históricos son tu ventaja.</p>
+          <p>Con cada semana de uso, El Oráculo se vuelve más preciso. Tus datos son tu ventaja.</p>
+          <div class="step-code">→ el modelo predictivo aprende de tu negocio</div>
         </div>
       </div>
     </div>
@@ -1031,90 +1474,318 @@
 <!-- PRECIO -->
 <section id="precio">
   <div class="container">
-    <div class="section-label" style="text-align:center">Precio</div>
-    <h2 class="section-title" style="text-align:center">Claro, sin sorpresas.</h2>
-
-    <div class="price-card">
-      <div class="price-tag">Suscripción mensual</div>
+    <div class="section-label reveal" style="text-align:center">precio</div>
+    <h2 class="section-title reveal" style="text-align:center">Claro, sin sorpresas.</h2>
+    <div class="price-card reveal">
+      <span class="price-tag">suscripción mensual · sin contrato anual</span>
       <div class="price-amount"><sup>$</sup>35.000</div>
-      <div class="price-period">por mes · sin contrato anual</div>
+      <div class="price-period">por mes · cancelás cuando querés</div>
       <ul class="price-features">
         <li>Sistema completo de gestión Vector BI</li>
-        <li>Agenda, caja, clientes y usuarios con PIN</li>
+        <li>Agenda, caja, clientes y accesos por PIN</li>
         <li>App instalable en Android e iOS</li>
         <li>Sincronización en tiempo real con la nube</li>
         <li>Soporte presencial en el NEA</li>
         <li>Actualizaciones incluidas</li>
       </ul>
-      <a href="https://wa.link/h2qr07" class="btn-primary" style="width:100%;justify-content:center;" target="_blank">
+      <a href="https://wa.link/h2qr07" class="btn-primary" style="width:100%;justify-content:center;" target="_blank" rel="noopener">
         Empezar con demo gratis
       </a>
     </div>
   </div>
 </section>
 
+<hr class="divider">
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="container">
+    <div class="section-label reveal">testimonios</div>
+    <h2 class="section-title reveal">Primeros clientes<br>en implementación.</h2>
+    <p class="section-body reveal">Estamos en la fase inicial de despliegue en el NEA. Los testimonios llegan pronto.</p>
+    <div class="testimonios-grid">
+      <div class="testi-card reveal">
+        <div class="testi-soon">// en implementación</div>
+        <div class="testi-text">"Antes manejaba todo en papel. Ahora sé exactamente cuándo va a entrar plata el mes que viene."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">?</div>
+          <div class="testi-meta">
+            <div class="testi-name">Próximamente</div>
+            <div class="testi-role">// estética · Oberá, Misiones</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-soon">// en implementación</div>
+        <div class="testi-text">"El sistema me avisó que una clienta de 3 años estaba por irse. La llamé, volvió. No tiene precio."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">?</div>
+          <div class="testi-meta">
+            <div class="testi-name">Próximamente</div>
+            <div class="testi-role">// centro de salud · NEA</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-soon">// en implementación</div>
+        <div class="testi-text">"Instalé la app en el celular y en 20 minutos ya tenía el primer turno cargado. Increíblemente simple."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">?</div>
+          <div class="testi-meta">
+            <div class="testi-name">Próximamente</div>
+            <div class="testi-role">// comercio · Misiones</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
 <!-- CTA FINAL -->
 <section class="cta-final" id="contacto">
-  <div class="section-label">Contacto</div>
-  <h2 class="section-title">10 minutos son suficientes<br>para ver si esto es para vos.</h2>
-  <p class="section-body">Una videollamada, el sistema en vivo, sin presión. Si no te convence, no perdiste nada.</p>
-  <a href="https://wa.link/h2qr07" class="btn-wsp" target="_blank">
-    <span class="wsp-icon" aria-hidden="true"></span>
+  <div class="section-label reveal">contacto</div>
+  <h2 class="section-title reveal">10 minutos son suficientes<br>para ver si esto es para vos.</h2>
+  <p class="section-body reveal">Una videollamada, el sistema en vivo, sin presión. Si no te convence, no perdiste nada.</p>
+  <a href="https://wa.link/h2qr07" class="btn-wsp reveal" target="_blank" rel="noopener">
+    <svg class="wsp-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     Escribinos por WhatsApp
   </a>
-  <p class="cta-subtext">Respondemos el mismo día · <a href="mailto:vectoranalyticsbi@gmail.com" style="color:var(--muted);text-decoration:none;">vectoranalyticsbi@gmail.com</a> · NEA, Argentina</p>
+  <p class="cta-subtext reveal">Respondemos el mismo día &nbsp;·&nbsp; <a href="mailto:vectoranalyticsbi@gmail.com" style="color:var(--muted);text-decoration:none;">vectoranalyticsbi@gmail.com</a> &nbsp;·&nbsp; Oberá, Misiones</p>
+</section>
+
+<!-- FORMULARIO -->
+<section class="form-section" id="formulario">
+  <div class="form-wrap reveal">
+    <span class="form-mono-label">o mandanos un mensaje directo</span>
+    <!--
+      IMPORTANTE: reemplazá "TU_FORM_ID" por el ID real de tu formulario de Formspree.
+      1. Creá una cuenta en https://formspree.io
+      2. Creá un formulario nuevo con destino vectoranalyticsbi@gmail.com
+      3. Formspree te da una URL tipo https://formspree.io/f/abcdwxyz — copiá ese ID acá abajo.
+      Sin este paso, el formulario no va a enviar nada.
+    -->
+    <form id="contactForm" action="https://formspree.io/f/TU_FORM_ID" method="POST">
+      <!-- honeypot antispam: invisible para personas, los bots lo completan y Formspree descarta el envío -->
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="nombre">nombre</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="email">email</label>
+          <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+        </div>
+        <div class="form-group form-msg-full">
+          <label for="mensaje">mensaje</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Contanos sobre tu negocio y qué necesitás..." required></textarea>
+        </div>
+      </div>
+      <button type="submit" class="form-submit">Enviar mensaje →</button>
+    </form>
+    <div class="form-success" id="formSuccess">✓ Mensaje enviado. Te respondemos pronto.</div>
+    <div class="form-error" id="formError">No se pudo enviar. Escribinos directamente a vectoranalyticsbi@gmail.com</div>
+  </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <span>© 2025 Vector BI Analytics — Oberá, Misiones</span>
-  <span class="footer-tagline">Convertimos operaciones en inteligencia.</span>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">
+        <span class="nav-logo-diamond">◆</span>
+        VECTOR <span>BI</span> ANALYTICS
+      </a>
+      <div class="footer-tagline">// convertimos operaciones en inteligencia</div>
+    </div>
+    <div class="footer-links">
+      <a href="#problema">→ el problema</a>
+      <a href="#features">→ funciones</a>
+      <a href="#rubros">→ rubros</a>
+      <a href="#precio">→ precio</a>
+      <a href="mailto:vectoranalyticsbi@gmail.com">→ vectoranalyticsbi@gmail.com</a>
+      <a href="https://wa.link/h2qr07" target="_blank" rel="noopener">→ WhatsApp</a>
+    </div>
+    <div class="footer-links">
+      <a href="https://linkedin.com" target="_blank" rel="noopener">→ LinkedIn</a>
+      <a href="https://instagram.com" target="_blank" rel="noopener">→ Instagram</a>
+    </div>
+  </div>
+  <div class="footer-copy">
+    © 2026 Vector BI Analytics &nbsp;·&nbsp; Oberá, Misiones, Argentina &nbsp;·&nbsp; Todos los derechos reservados
+  </div>
 </footer>
 
-<script>
-  // Bar chart
-  (function(){
-    const area = document.getElementById('barChart');
-    if (!area) return;
-    const vals =  [42,55,38,61,70,48,52,80,67,73,45,58,90,76,63,88,55,72,95,68,74,82,79,86,91];
-    const proj =  [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,95,105,112];
-    const days =  ['1','','','','5','','','','','10','','','','','15','','','','','20','','','','','25'];
-    const max = 115;
-    vals.forEach(function(v, i){
-      const col = document.createElement('div');
-      col.className = 'bar-col';
-      if (proj[i] !== null) {
-        const pb = document.createElement('div');
-        pb.className = 'bar-fill';
-        pb.style.cssText = 'height:' + Math.round((proj[i]/max)*100) + 'px;background:#0f4030;border:1px dashed #1a6045;';
-        col.appendChild(pb);
-      } else {
-        const b = document.createElement('div');
-        b.className = 'bar-fill';
-        b.style.cssText = 'height:' + Math.round((v/max)*100) + 'px;background:#FF007F;';
-        col.appendChild(b);
-      }
-      if (days[i]) {
-        const lbl = document.createElement('span');
-        lbl.className = 'bar-lbl';
-        lbl.textContent = days[i];
-        col.appendChild(lbl);
-      }
-      area.appendChild(col);
-    });
-  })();
+<!-- BOTÓN FLOTANTE WSP -->
+<a href="https://wa.link/h2qr07" class="wsp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(function(a){
-    a.addEventListener('click', function(e){
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+<script>
+// ── TYPEWRITER ──
+(function(){
+  const el = document.getElementById('typewriter');
+  if (!el) return;
+  const lines = [
+    'Predecí tus ingresos del próximo mes.',
+    'Detectá clientes en riesgo antes de perderlos.',
+    'Tomá decisiones con datos reales, no con intuición.',
+    'Tu negocio, tu inteligencia. Sin Excel.'
+  ];
+  let li = 0, ci = 0, deleting = false;
+  function tick() {
+    const line = lines[li];
+    if (!deleting) {
+      el.textContent = line.slice(0, ci + 1);
+      ci++;
+      if (ci === line.length) { deleting = true; setTimeout(tick, 2200); return; }
+      setTimeout(tick, 52);
+    } else {
+      el.textContent = line.slice(0, ci - 1);
+      ci--;
+      if (ci === 0) { deleting = false; li = (li + 1) % lines.length; setTimeout(tick, 400); return; }
+      setTimeout(tick, 28);
+    }
+  }
+  setTimeout(tick, 800);
+})();
+
+// ── HAMBURGER MENU ──
+(function(){
+  const btn = document.getElementById('hamburgerBtn');
+  const menu = document.getElementById('mobileMenu');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function(){
+    const open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
     });
   });
-</script>
+})();
 
+// ── SCROLL REVEAL ──
+(function(){
+  const obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+})();
+
+// ── COUNTER ANIMATION ──
+(function(){
+  const nums = document.querySelectorAll('.count-num');
+  const obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseInt(el.dataset.target);
+      const isZero = target === 0;
+      if (isZero) { el.textContent = '0'; obs.unobserve(el); return; }
+      const dur = 1400;
+      const step = 16;
+      const steps = dur / step;
+      let cur = 0;
+      const inc = target / steps;
+      const timer = setInterval(function(){
+        cur += inc;
+        if (cur >= target) { cur = target; clearInterval(timer); }
+        el.textContent = Math.round(cur).toLocaleString('es-AR');
+      }, step);
+      obs.unobserve(el);
+    });
+  }, { threshold: .5 });
+  nums.forEach(function(el){ obs.observe(el); });
+})();
+
+// ── BAR CHART ──
+(function(){
+  const area = document.getElementById('barChart');
+  if (!area) return;
+  const vals = [42,55,38,61,70,48,52,80,67,73,45,58,90,76,63,88,55,72,95,68,74,82,79,86,91];
+  const proj = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,95,105,112];
+  const days = ['1','','','','5','','','','','10','','','','','15','','','','','20','','','','','25'];
+  const max = 115;
+  vals.forEach(function(v, i){
+    const col = document.createElement('div');
+    col.className = 'bar-col';
+    const b = document.createElement('div');
+    b.className = 'bar-fill';
+    if (proj[i] !== null) {
+      b.style.cssText = 'height:' + Math.round((proj[i]/max)*90) + 'px;background:#0f4030;border:1px dashed #1a6045;';
+    } else {
+      b.style.cssText = 'height:' + Math.round((v/max)*90) + 'px;background:#FF007F;';
+    }
+    col.appendChild(b);
+    if (days[i]) {
+      const lbl = document.createElement('span');
+      lbl.className = 'bar-lbl';
+      lbl.textContent = days[i];
+      col.appendChild(lbl);
+    }
+    area.appendChild(col);
+  });
+})();
+
+// ── FORMULARIO (Formspree) ──
+(function(){
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('formSuccess');
+  const errorBox = document.getElementById('formError');
+  if (!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    errorBox.style.display = 'none';
+    const submitBtn = form.querySelector('.form-submit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+    const data = new FormData(form);
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(function(r){
+      if (r.ok) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+        if (typeof gtag === 'function') {
+          gtag('event', 'generate_lead', { method: 'contact_form' });
+        }
+      } else {
+        throw new Error('bad response');
+      }
+    }).catch(function(){
+      errorBox.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enviar mensaje →';
+    });
+  });
+})();
+
+// ── GA4: TRACKING DE CLICS EN WHATSAPP ──
+(function(){
+  if (typeof gtag !== 'function') return;
+  document.querySelectorAll('a[href*="wa.link"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      gtag('event', 'generate_lead', { method: 'whatsapp', link_location: a.className || 'link' });
+    });
+  });
+})();
+
+// ── SMOOTH SCROLL ──
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    const t = document.querySelector(this.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
 </body>
 </html>
